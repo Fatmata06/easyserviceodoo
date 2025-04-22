@@ -1,0 +1,4 @@
+2025-04-05 23:35:29.132 +00 [10812] ERREUR:  une instruction insert ou update sur la table « account_move » viole la contrainte de clé
+	étrangère « account_move_invoice_user_id_fkey »
+2025-04-05 23:35:29.132 +00 [10812] DÉTAIL:  La clé (invoice_user_id)=(12) n'est pas présente dans la table « res_users ».
+2025-04-05 23:35:29.132 +00 [10812] INSTRUCTION :  INSERT INTO "account_move" ("auto_post", "company_id", "create_date", "create_uid", "currency_id", "date", "delivery_date", "fiscal_position_id", "invoice_currency_rate", "invoice_date", "invoice_incoterm_id", "invoice_payment_term_id", "invoice_user_id", "journal_id", "move_type", "partner_id", "partner_shipping_id", "ref", "state", "write_date", "write_uid", "x_service_id") VALUES ('no', 1, '2025-04-05 23:35:28.518453', 2, 41, '2025-04-05', NULL, NULL, 1.0, '2025-04-05T23:35:12.561Z', NULL, NULL, 12, 8, 'out_invoice', 5, 5, 'FAC-026', 'draft', '2025-04-05 23:35:28.518453', 2, 21) RETURNING "id"

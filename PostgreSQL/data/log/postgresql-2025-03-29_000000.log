@@ -1,0 +1,9 @@
+2025-03-29 11:55:34.585 +00 [16168] LOG:  a reçu une demande d'arrêt rapide
+2025-03-29 11:55:34.615 +00 [16168] LOG:  annulation des transactions actives
+2025-03-29 11:55:34.628 +00 [18712] ERREUR:  annulation de la requête à la demande de l'utilisateur
+2025-03-29 11:55:34.681 +00 [16168] LOG:  processus en tâche de fond « logical replication launcher » (PID 18712) a quitté avec le code de sortie 1
+2025-03-29 11:55:34.678 +00 [19232] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-03-29 11:55:34.684 +00 [14316] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-03-29 11:55:34.697 +00 [22144] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-03-29 11:55:34.744 +00 [7620] LOG:  arrêt en cours
+2025-03-29 11:55:34.999 +00 [16168] LOG:  le système de base de données est arrêté

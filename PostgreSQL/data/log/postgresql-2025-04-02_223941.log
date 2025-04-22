@@ -1,0 +1,7 @@
+2025-04-02 22:39:41.854 +00 [6316] LOG:  le système de bases de données a été interrompu ; dernier lancement connu à 2025-03-29 12:01:31 +00
+2025-04-02 22:39:44.035 +00 [6316] LOG:  le système de bases de données n'a pas été arrêté proprement ; restauration
+	automatique en cours
+2025-04-02 22:39:44.047 +00 [6316] LOG:  la ré-exécution commence à 0/33C2768
+2025-04-02 22:39:44.048 +00 [6316] LOG:  longueur invalide de l'enregistrement à 0/33C2850 : voulait 24, a eu 0
+2025-04-02 22:39:44.050 +00 [6316] LOG:  ré-exécution faite à 0/33C2818
+2025-04-02 22:39:44.119 +00 [5380] LOG:  le système de bases de données est prêt pour accepter les connexions

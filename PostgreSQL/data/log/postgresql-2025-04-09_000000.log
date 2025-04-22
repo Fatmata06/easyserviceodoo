@@ -1,0 +1,178 @@
+2025-04-10 00:00:13.298 +01 [2724] ERREUR:  n'a pas pu sérialiser un accès à cause d'une mise à jour en parallèle
+2025-04-10 00:00:13.298 +01 [2724] INSTRUCTION :  
+	            WITH last_cron_progress AS (
+	                SELECT id as progress_id, cron_id, timed_out_counter, done, remaining
+	                FROM ir_cron_progress
+	                WHERE cron_id = 15
+	                ORDER BY id DESC
+	                LIMIT 1
+	            )
+	            SELECT *
+	            FROM ir_cron
+	            LEFT JOIN last_cron_progress lcp ON lcp.cron_id = ir_cron.id
+	            WHERE ir_cron.active = true
+	              AND (nextcall <= (now() at time zone 'UTC')
+	                OR EXISTS (
+	                    SELECT cron_id
+	                    FROM ir_cron_trigger
+	                    WHERE call_at <= (now() at time zone 'UTC')
+	                      AND cron_id = ir_cron.id
+	                )
+	              )
+	              AND id = 15
+	            ORDER BY priority
+	            FOR NO KEY UPDATE SKIP LOCKED
+	        
+TopMemoryContext: 68704 total in 5 blocks; 11336 free (27 chunks); 57368 used
+  Type information cache: 8192 total in 1 blocks; 2624 free (0 chunks); 5568 used
+  pgstat TabStatusArray lookup hash table: 8192 total in 1 blocks; 1584 free (0 chunks); 6608 used
+  TopTransactionContext: 8192 total in 1 blocks; 7440 free (1 chunks); 752 used
+  RI compare cache: 8192 total in 1 blocks; 2624 free (0 chunks); 5568 used
+  RI query cache: 8192 total in 1 blocks; 1584 free (0 chunks); 6608 used
+  RI constraint cache: 40888 total in 2 blocks; 2624 free (0 chunks); 38264 used
+  Sequence values: 8192 total in 1 blocks; 1584 free (0 chunks); 6608 used
+  TableSpace cache: 8192 total in 1 blocks; 2096 free (0 chunks); 6096 used
+  Operator lookup cache: 24576 total in 2 blocks; 10760 free (3 chunks); 13816 used
+  RowDescriptionContext: 8192 total in 1 blocks; 6896 free (0 chunks); 1296 used
+  MessageContext: 65536 total in 4 blocks; 47968 free (24 chunks); 17568 used
+  Operator class cache: 8192 total in 1 blocks; 560 free (0 chunks); 7632 used
+  smgr relation table: 32768 total in 3 blocks; 16832 free (8 chunks); 15936 used
+  TransactionAbortContext: 32768 total in 1 blocks; 32512 free (0 chunks); 256 used
+  Portal hash: 8192 total in 1 blocks; 560 free (0 chunks); 7632 used
+  TopPortalContext: 8192 total in 1 blocks; 7936 free (1 chunks); 256 used
+  Relcache by OID: 16384 total in 2 blocks; 3512 free (2 chunks); 12872 used
+  CacheMemoryContext: 1170424 total in 9 blocks; 469232 free (0 chunks); 701192 used
+    CachedPlanSource: 4096 total in 3 blocks; 1392 free (0 chunks); 2704 used: SELECT 1 FROM ONLY "public"."res_users" x WHERE "id" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x
+      CachedPlanQuery: 8192 total in 4 blocks; 3840 free (1 chunks); 4352 used
+    SPI Plan: 1024 total in 1 blocks; 584 free (0 chunks); 440 used
+    CachedPlanSource: 4096 total in 3 blocks; 1392 free (0 chunks); 2704 used: SELECT 1 FROM ONLY "public"."res_users" x WHERE "id" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x
+      CachedPlanQuery: 8192 total in 4 blocks; 3840 free (1 chunks); 4352 used
+    SPI Plan: 1024 total in 1 blocks; 584 free (0 chunks); 440 used
+    index info: 2048 total in 2 blocks; 968 free (1 chunks); 1080 used: ir_cron_pkey
+    CachedPlanSource: 4096 total in 3 blocks; 1400 free (0 chunks); 2696 used: SELECT 1 FROM ONLY "public"."ir_cron" x WHERE "id" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x
+      CachedPlanQuery: 4096 total in 3 blocks; 224 free (1 chunks); 3872 used
+    SPI Plan: 1024 total in 1 blocks; 584 free (0 chunks); 440 used
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: ir_cron_progress__cron_id_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: ir_cron_progress_pkey
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_statistic_ext_relid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: res_users__partner_id_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: res_users_login_key
+    index info: 2048 total in 2 blocks; 968 free (1 chunks); 1080 used: res_users_pkey
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_index_indrelid_index
+    index info: 2048 total in 2 blocks; 592 free (1 chunks); 1456 used: pg_constraint_conrelid_contypid_conname_index
+    index info: 2048 total in 2 blocks; 680 free (1 chunks); 1368 used: pg_attrdef_adrelid_adnum_index
+    index info: 2048 total in 2 blocks; 728 free (2 chunks); 1320 used: pg_db_role_setting_databaseid_rol_index
+    index info: 2048 total in 2 blocks; 704 free (3 chunks); 1344 used: pg_opclass_am_name_nsp_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_foreign_data_wrapper_name_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_enum_oid_index
+    index info: 2048 total in 2 blocks; 680 free (2 chunks); 1368 used: pg_class_relname_nsp_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_foreign_server_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_publication_pubname_index
+    index info: 2048 total in 2 blocks; 592 free (3 chunks); 1456 used: pg_statistic_relid_att_inh_index
+    index info: 2048 total in 2 blocks; 680 free (2 chunks); 1368 used: pg_cast_source_target_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_language_name_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_transform_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_collation_oid_index
+    index info: 3072 total in 2 blocks; 1136 free (2 chunks); 1936 used: pg_amop_fam_strat_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_index_indexrelid_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_ts_template_tmplname_index
+    index info: 2048 total in 2 blocks; 704 free (3 chunks); 1344 used: pg_ts_config_map_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_opclass_oid_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_foreign_data_wrapper_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_event_trigger_evtname_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_statistic_ext_name_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_publication_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_ts_dict_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_event_trigger_oid_index
+    index info: 3072 total in 2 blocks; 1216 free (3 chunks); 1856 used: pg_conversion_default_index
+    index info: 3072 total in 2 blocks; 1136 free (2 chunks); 1936 used: pg_operator_oprname_l_r_n_index
+    index info: 2048 total in 2 blocks; 680 free (2 chunks); 1368 used: pg_trigger_tgrelid_tgname_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_enum_typid_label_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_ts_config_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_user_mapping_oid_index
+    index info: 2048 total in 2 blocks; 704 free (3 chunks); 1344 used: pg_opfamily_am_name_nsp_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_foreign_table_relid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_type_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_aggregate_fnoid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_constraint_oid_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_rewrite_rel_rulename_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_ts_parser_prsname_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_ts_config_cfgname_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_ts_parser_oid_index
+    index info: 2048 total in 2 blocks; 728 free (1 chunks); 1320 used: pg_publication_rel_prrelid_prpubid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_operator_oid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_namespace_nspname_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_ts_template_oid_index
+    index info: 2048 total in 2 blocks; 624 free (2 chunks); 1424 used: pg_amop_opr_fam_index
+    index info: 2048 total in 2 blocks; 672 free (3 chunks); 1376 used: pg_default_acl_role_nsp_obj_index
+    index info: 2048 total in 2 blocks; 704 free (3 chunks); 1344 used: pg_collation_name_enc_nsp_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_publication_rel_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_range_rngtypid_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_ts_dict_dictname_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_type_typname_nsp_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_opfamily_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_statistic_ext_oid_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_statistic_ext_data_stxoid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_class_oid_index
+    index info: 2048 total in 2 blocks; 624 free (2 chunks); 1424 used: pg_proc_proname_args_nsp_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_partitioned_table_partrelid_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_transform_type_lang_index
+    index info: 2048 total in 2 blocks; 680 free (2 chunks); 1368 used: pg_attribute_relid_attnum_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_proc_oid_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_language_oid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_namespace_oid_index
+    index info: 3072 total in 2 blocks; 1136 free (2 chunks); 1936 used: pg_amproc_fam_proc_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_foreign_server_name_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_attribute_relid_attnam_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_conversion_oid_index
+    index info: 2048 total in 2 blocks; 728 free (1 chunks); 1320 used: pg_user_mapping_user_server_index
+    index info: 2048 total in 2 blocks; 728 free (1 chunks); 1320 used: pg_subscription_rel_srrelid_srsubid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_sequence_seqrelid_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_conversion_name_nsp_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_authid_oid_index
+    index info: 2048 total in 2 blocks; 728 free (1 chunks); 1320 used: pg_auth_members_member_role_index
+    index info: 1024 total in 1 blocks; 48 free (0 chunks); 976 used: pg_subscription_oid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_tablespace_oid_index
+    index info: 2048 total in 2 blocks; 704 free (3 chunks); 1344 used: pg_shseclabel_object_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_replication_origin_roname_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_database_datname_index
+    index info: 2048 total in 2 blocks; 760 free (2 chunks); 1288 used: pg_subscription_subname_index
+    index info: 1024 total in 1 blocks; 16 free (0 chunks); 1008 used: pg_replication_origin_roiident_index
+    index info: 2048 total in 2 blocks; 728 free (1 chunks); 1320 used: pg_auth_members_role_member_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_database_oid_index
+    index info: 2048 total in 2 blocks; 952 free (1 chunks); 1096 used: pg_authid_rolname_index
+  WAL record construction: 49768 total in 2 blocks; 6368 free (0 chunks); 43400 used
+  PrivateRefCount: 8192 total in 1 blocks; 2624 free (0 chunks); 5568 used
+  MdSmgr: 8192 total in 1 blocks; 7720 free (0 chunks); 472 used
+  LOCALLOCK hash: 16384 total in 2 blocks; 4600 free (2 chunks); 11784 used
+  Timezones: 104120 total in 2 blocks; 2624 free (0 chunks); 101496 used
+  ErrorContext: 8192 total in 1 blocks; 7936 free (0 chunks); 256 used
+Grand total: 1929520 bytes in 220 blocks; 726384 free (168 chunks); 1203136 used
+2025-04-10 11:30:49.548 +01 [23404] ERREUR:  mémoire épuisée au caractère 241
+2025-04-10 11:30:49.548 +01 [23404] DÉTAIL:  Échec d'une requête de taille 16104 dans le contexte mémoire « dynahash ».
+2025-04-10 11:30:49.548 +01 [23404] INSTRUCTION :  SELECT "ir_act_server_group_rel"."act_id", "ir_act_server_group_rel"."gid" FROM "res_groups" JOIN "ir_act_server_group_rel" ON ("ir_act_server_group_rel"."gid" = "res_groups"."id") WHERE "ir_act_server_group_rel"."act_id" IN (127) ORDER BY "res_groups"."name"->>'en_US'  
+2025-04-10 11:32:14.216 +01 [21148] ERREUR:  n'a pas pu sérialiser un accès à cause d'une mise à jour en parallèle
+2025-04-10 11:32:14.216 +01 [21148] INSTRUCTION :  
+	            WITH last_cron_progress AS (
+	                SELECT id as progress_id, cron_id, timed_out_counter, done, remaining
+	                FROM ir_cron_progress
+	                WHERE cron_id = 15
+	                ORDER BY id DESC
+	                LIMIT 1
+	            )
+	            SELECT *
+	            FROM ir_cron
+	            LEFT JOIN last_cron_progress lcp ON lcp.cron_id = ir_cron.id
+	            WHERE ir_cron.active = true
+	              AND (nextcall <= (now() at time zone 'UTC')
+	                OR EXISTS (
+	                    SELECT cron_id
+	                    FROM ir_cron_trigger
+	                    WHERE call_at <= (now() at time zone 'UTC')
+	                      AND cron_id = ir_cron.id
+	                )
+	              )
+	              AND id = 15
+	            ORDER BY priority
+	            FOR NO KEY UPDATE SKIP LOCKED
+	        

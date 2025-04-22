@@ -1,0 +1,78 @@
+2025-04-06 21:17:33.817 +01 [12892] ERREUR:  une valeur NULL viole la contrainte NOT NULL de la colonne « address_id »
+2025-04-06 21:17:33.817 +01 [12892] DÉTAIL:  La ligne en échec contient (5, 1, null, 2, 2, Thiès,Thiès, Sénégal, office, null, t, 2025-04-06 20:17:33.697808, 2025-04-06 20:17:33.697808).
+2025-04-06 21:17:33.817 +01 [12892] INSTRUCTION :  INSERT INTO "hr_work_location" ("active", "company_id", "create_date", "create_uid", "location_type", "name", "write_date", "write_uid") VALUES (true, 1, '2025-04-06 20:17:33.697808', 2, 'office', 'Thiès,Thiès, Sénégal', '2025-04-06 20:17:33.697808', 2) RETURNING "id"
+2025-04-07 12:31:15.323 +01 [15776] ERREUR:  n'a pas pu sérialiser un accès à cause d'une mise à jour en parallèle
+2025-04-07 12:31:15.323 +01 [15776] INSTRUCTION :  
+	            WITH last_cron_progress AS (
+	                SELECT id as progress_id, cron_id, timed_out_counter, done, remaining
+	                FROM ir_cron_progress
+	                WHERE cron_id = 7
+	                ORDER BY id DESC
+	                LIMIT 1
+	            )
+	            SELECT *
+	            FROM ir_cron
+	            LEFT JOIN last_cron_progress lcp ON lcp.cron_id = ir_cron.id
+	            WHERE ir_cron.active = true
+	              AND (nextcall <= (now() at time zone 'UTC')
+	                OR EXISTS (
+	                    SELECT cron_id
+	                    FROM ir_cron_trigger
+	                    WHERE call_at <= (now() at time zone 'UTC')
+	                      AND cron_id = ir_cron.id
+	                )
+	              )
+	              AND id = 7
+	            ORDER BY priority
+	            FOR NO KEY UPDATE SKIP LOCKED
+	        
+2025-04-07 13:31:28.006 +01 [15776] ERREUR:  n'a pas pu sérialiser un accès à cause d'une mise à jour en parallèle
+2025-04-07 13:31:28.006 +01 [15776] INSTRUCTION :  
+	            WITH last_cron_progress AS (
+	                SELECT id as progress_id, cron_id, timed_out_counter, done, remaining
+	                FROM ir_cron_progress
+	                WHERE cron_id = 15
+	                ORDER BY id DESC
+	                LIMIT 1
+	            )
+	            SELECT *
+	            FROM ir_cron
+	            LEFT JOIN last_cron_progress lcp ON lcp.cron_id = ir_cron.id
+	            WHERE ir_cron.active = true
+	              AND (nextcall <= (now() at time zone 'UTC')
+	                OR EXISTS (
+	                    SELECT cron_id
+	                    FROM ir_cron_trigger
+	                    WHERE call_at <= (now() at time zone 'UTC')
+	                      AND cron_id = ir_cron.id
+	                )
+	              )
+	              AND id = 15
+	            ORDER BY priority
+	            FOR NO KEY UPDATE SKIP LOCKED
+	        
+2025-04-07 22:40:50.729 +01 [13920] ERREUR:  n'a pas pu sérialiser un accès à cause d'une mise à jour en parallèle
+2025-04-07 22:40:50.729 +01 [13920] INSTRUCTION :  
+	            WITH last_cron_progress AS (
+	                SELECT id as progress_id, cron_id, timed_out_counter, done, remaining
+	                FROM ir_cron_progress
+	                WHERE cron_id = 14
+	                ORDER BY id DESC
+	                LIMIT 1
+	            )
+	            SELECT *
+	            FROM ir_cron
+	            LEFT JOIN last_cron_progress lcp ON lcp.cron_id = ir_cron.id
+	            WHERE ir_cron.active = true
+	              AND (nextcall <= (now() at time zone 'UTC')
+	                OR EXISTS (
+	                    SELECT cron_id
+	                    FROM ir_cron_trigger
+	                    WHERE call_at <= (now() at time zone 'UTC')
+	                      AND cron_id = ir_cron.id
+	                )
+	              )
+	              AND id = 14
+	            ORDER BY priority
+	            FOR NO KEY UPDATE SKIP LOCKED
+	        

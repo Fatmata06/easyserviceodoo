@@ -1,0 +1,13 @@
+2025-04-16 18:38:32.797 +01 [4384] LOG:  a reçu une demande d'arrêt rapide
+2025-04-16 18:38:32.809 +01 [4384] LOG:  annulation des transactions actives
+2025-04-16 18:38:32.848 +01 [6728] ERREUR:  annulation de la requête à la demande de l'utilisateur
+2025-04-16 18:38:32.852 +01 [3924] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:32.863 +01 [22324] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:32.880 +01 [23136] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:32.920 +01 [15220] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:33.020 +01 [6324] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:33.168 +01 [4384] LOG:  processus en tâche de fond « logical replication launcher » (PID 6728) a quitté avec le code de sortie 1
+2025-04-16 18:38:33.109 +01 [6296] FATAL:  arrÃªt des connexions suite Ã  la demande de l'administrateur
+2025-04-16 18:38:33.517 +01 [6688] LOG:  arrêt en cours
+2025-04-16 18:38:34.033 +01 [21384] FATAL:  le système de base de données s'arrête
+2025-04-16 18:38:34.081 +01 [4384] LOG:  le système de base de données est arrêté

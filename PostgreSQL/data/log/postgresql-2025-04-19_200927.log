@@ -1,0 +1,7 @@
+2025-04-19 20:09:27.416 +01 [5756] LOG:  le système de bases de données a été interrompu ; dernier lancement connu à 2025-04-19 12:38:28 +01
+2025-04-19 20:09:32.421 +01 [5756] LOG:  le système de bases de données n'a pas été arrêté proprement ; restauration
+	automatique en cours
+2025-04-19 20:09:32.435 +01 [5756] LOG:  la ré-exécution commence à 0/9B063F8
+2025-04-19 20:09:32.472 +01 [5756] LOG:  longueur invalide de l'enregistrement à 0/9B32578 : voulait 24, a eu 0
+2025-04-19 20:09:32.473 +01 [5756] LOG:  ré-exécution faite à 0/9B32550
+2025-04-19 20:09:32.672 +01 [3900] LOG:  le système de bases de données est prêt pour accepter les connexions

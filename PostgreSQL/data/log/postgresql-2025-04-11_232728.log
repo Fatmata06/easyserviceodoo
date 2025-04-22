@@ -1,0 +1,7 @@
+2025-04-11 23:27:29.318 +01 [4604] LOG:  le système de bases de données a été interrompu ; dernier lancement connu à 2025-04-11 23:22:10 +01
+2025-04-11 23:27:36.890 +01 [4604] LOG:  le système de bases de données n'a pas été arrêté proprement ; restauration
+	automatique en cours
+2025-04-11 23:27:36.907 +01 [4604] LOG:  la ré-exécution commence à 0/8DCAB80
+2025-04-11 23:27:36.909 +01 [4604] LOG:  longueur invalide de l'enregistrement à 0/8DCAC68 : voulait 24, a eu 0
+2025-04-11 23:27:36.910 +01 [4604] LOG:  ré-exécution faite à 0/8DCAC30
+2025-04-11 23:27:37.046 +01 [4384] LOG:  le système de bases de données est prêt pour accepter les connexions
